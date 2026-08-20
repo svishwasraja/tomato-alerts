@@ -1,10 +1,15 @@
 {
   "items": [
     { "label": "Tomato", "query": "Desi Tamatar" },
-    { "label": "Protinex", "query": "Protinex Adults Original Drink Mix" }
+    {
+      "label": "Protinex",
+      "query": "Protinex Adults Original Drink Mix",
+      "queryByPlatform": {
+        "zepto": "Protinex Regular Malt Drink Mix"
+      }
+    }
   ],
   "platforms": ["blinkit", "zepto"],
-  "locations": [
     {
       "label": "Home",
       "lat": 28.525014630269315,
