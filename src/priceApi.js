@@ -35,7 +35,7 @@ async function getPriceFromQuickCommerceApi({ query, platform, lat, lon }) {
   }
 
   const data = await res.json();
-   const item = data?.results?.[0] || data?.data?.[0];
+  const item = data?.data?.products?.[0];
 
    if (!item) {
      console.log("DEBUG raw response:", JSON.stringify(data));
@@ -43,8 +43,8 @@ async function getPriceFromQuickCommerceApi({ query, platform, lat, lon }) {
    }
 
   return {
-    price: Number(item.price ?? item.offer_price ?? item.sellingPrice),
-    inStock: item.inStock ?? item.available ?? true,
+    price: Number(item.offer_price),
+    inStock: item.available ?? true,
     productName: item.name ?? item.title ?? query,
   };
 }
