@@ -35,11 +35,12 @@ async function getPriceFromQuickCommerceApi({ query, platform, lat, lon }) {
   }
 
   const data = await res.json();
-  const item = data?.results?.[0] || data?.data?.[0];
+   const item = data?.results?.[0] || data?.data?.[0];
 
-  if (!item) {
-    return { price: null, inStock: false, productName: null };
-  }
+   if (!item) {
+     console.log("DEBUG raw response:", JSON.stringify(data));
+     return { price: null, inStock: false, productName: null };
+   }
 
   return {
     price: Number(item.price ?? item.offer_price ?? item.sellingPrice),
