@@ -1,5 +1,8 @@
 {
-  "query": "Desi Tamatar",
+  "items": [
+    { "label": "Tomato", "query": "Desi Tamatar" },
+    { "label": "Protinex", "query": "Protinex Adults Original Drink Mix" }
+  ],
   "platforms": ["blinkit", "zepto"],
   "locations": [
     {
@@ -8,6 +11,5 @@
       "lon": 77.14430198785895,
       "whatsappTo": "whatsapp:+918860222930"
     }
-  ],
-  "checkIntervalMinutes": 15
+  ]
 }
