@@ -1,0 +1,13 @@
+{
+  "query": "tomato",
+  "platforms": ["blinkit", "zepto"],
+  "locations": [
+    {
+      "label": "Home",
+      "lat": 19.0760,
+      "lon": 72.8777,
+      "whatsappTo": "whatsapp:+91XXXXXXXXXX"
+    }
+  ],
+  "checkIntervalMinutes": 15
+}

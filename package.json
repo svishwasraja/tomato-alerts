@@ -1,0 +1,15 @@
+{
+  "name": "tomato-alerts",
+  "version": "1.0.0",
+  "description": "Watches tomato prices on Blinkit and Zepto, sends a WhatsApp alert on any price or stock change.",
+  "main": "src/check.js",
+  "scripts": {
+    "check": "node src/check.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
