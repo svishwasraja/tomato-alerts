@@ -16,45 +16,53 @@ function arrow(oldPrice, newPrice) {
   return "➡️ no change";
 }
 
-async function checkLocation(location) {
+async function checkItemAtLocation(item, location) {
   const results = {};
 
-  // Step 1: fetch every platform's current price
   for (const platform of config.platforms) {
     try {
       results[platform] = await getPrice({
-        query: config.query,
+        query: item.query,
         platform,
         lat: location.lat,
         lon: location.lon,
       });
     } catch (err) {
-      console.error(`[${platform} / ${location.label}] fetch failed:`, err.message);
+      console.error(`[${item.label} / ${platform} / ${location.label}] fetch failed:`, err.message);
       results[platform] = null;
     }
   }
 
-  // Step 2: build one combined report line per platform
   const lines = [];
   for (const platform of config.platforms) {
     const result = results[platform];
-    const key = `tomato:${platform}:${location.label}`;
+    const key = `grocery:${item.label}:${platform}:${location.label}`;
     const last = await getLastPrice(key);
 
     if (!result || result.price == null) {
-      lines.push(`${platform}: ⚠️ couldn't fetch price`);
+      lines.push(`  ${platform}: ⚠️ couldn't fetch price`);
       continue;
     }
 
     const stockNote = result.inStock ? "" : " (OUT OF STOCK)";
     const trend = arrow(last?.price ?? null, result.price);
-    lines.push(`${platform}: ₹${result.price}${stockNote} — ${trend}`);
+    lines.push(`  ${platform}: ₹${result.price}${stockNote} — ${trend}`);
 
     await setLastPrice(key, result);
   }
 
-  // Step 3: send one daily summary message
-  const message = `🍅 Tomato morning report (${location.label})\n\n` + lines.join("\n");
+  return `${item.label}\n` + lines.join("\n");
+}
+
+async function checkLocation(location) {
+  const itemBlocks = [];
+  for (const item of config.items) {
+    const block = await checkItemAtLocation(item, location);
+    itemBlocks.push(block);
+  }
+
+  const message =
+    `🛒 Grocery morning report (${location.label})\n\n` + itemBlocks.join("\n\n");
   console.log(message);
   await sendNotification({ body: message });
 }
