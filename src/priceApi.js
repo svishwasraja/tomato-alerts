@@ -35,7 +35,8 @@ async function getPriceFromQuickCommerceApi({ query, platform, lat, lon }) {
   }
 
   const data = await res.json();
-  const item = data?.data?.products?.[0];
+const products = data?.data?.products || [];
+const item = products.find((p) => !p.is_ad) || products[0];
 
    if (!item) {
      console.log("DEBUG raw response:", JSON.stringify(data));
