@@ -1,12 +1,12 @@
 {
-  "query": "tomato",
+  "query": "Desi Tamatar",
   "platforms": ["blinkit", "zepto"],
   "locations": [
     {
       "label": "Home",
-      "lat": 19.0760,
-      "lon": 72.8777,
-      "whatsappTo": "whatsapp:+91XXXXXXXXXX"
+      "lat": 28.525014630269315,
+      "lon": 77.14430198785895,
+      "whatsappTo": "whatsapp:+918860222930"
     }
   ],
   "checkIntervalMinutes": 15
