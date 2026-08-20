@@ -2,7 +2,7 @@ name: Check tomato prices
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+       - cron: "30 2 * * *"
   workflow_dispatch: {}
 
 jobs:
