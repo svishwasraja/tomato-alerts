@@ -10,6 +10,7 @@
     }
   ],
   "platforms": ["blinkit", "zepto"],
+  "locations": [
     {
       "label": "Home",
       "lat": 28.525014630269315,
