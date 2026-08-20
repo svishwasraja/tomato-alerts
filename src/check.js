@@ -22,7 +22,7 @@ async function checkItemAtLocation(item, location) {
   for (const platform of config.platforms) {
     try {
       results[platform] = await getPrice({
-        query: item.query,
+        query: item.queryByPlatform?.[platform] || item.query,
         platform,
         lat: location.lat,
         lon: location.lon,
