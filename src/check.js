@@ -3,7 +3,7 @@ const fs = require("fs");
 const path = require("path");
 const { getPrice } = require("./priceApi");
 const { getLastPrice, setLastPrice } = require("./store");
-const { sendWhatsApp } = require("./whatsapp");
+const { sendNotification } = require("./notify");
 
 const config = JSON.parse(
   fs.readFileSync(path.join(__dirname, "..", "config.json"), "utf-8")
@@ -56,7 +56,7 @@ async function checkLocation(location) {
   // Step 3: send one daily summary message
   const message = `🍅 Tomato morning report (${location.label})\n\n` + lines.join("\n");
   console.log(message);
-  await sendWhatsApp({ to: location.whatsappTo, body: message });
+  await sendNotification({ body: message });
 }
 
 async function main() {
